@@ -2,7 +2,7 @@
   <div id="app" class="shadow">
     <appHeader v-bind:propsdata="todoLeng"></appHeader>
     <appInput v-on:addExercise="emitData"></appInput>
-    <appList v-bind:propsdata="todoExercise" v-on:removeclick="removeItems"></appList>
+    <appList v-bind:propsdata="todoExercise" v-on:removeclick="removeItems" v-on:checkedclick="checkItems"></appList>
     <appFooter v-on:clearAll="clearing"></appFooter>
   </div>
 </template>
@@ -31,9 +31,14 @@ export default {
       this.todoExercise = []; // 클리어하면 빈배열로 만들어준다.
     },
     removeItems(todoExer, index) {
-      localStorage.removeItem(todoExer);
+      localStorage.removeItem(todoExer.item);
       // 로컬만 없애면 새로고침해야 적용되기 때문에 바로 없애줄 수 있는 배열에서 인텍스를 찾아 splice로 잘라준다.
       this.todoExercise.splice(index, 1)
+    },
+    checkItems(todoCheck){
+      todoCheck.check = !todoCheck.check;
+      localStorage.removeItem(todoCheck.item);
+      localStorage.setItem(todoCheck.item, JSON.stringify(todoCheck));
     }
   },
   created(){

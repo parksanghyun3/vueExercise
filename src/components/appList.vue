@@ -19,13 +19,10 @@ export default {
   props: ["propsdata"],
   methods: {
     removeList(list, index) {
-      this.$emit("removeclick", {list, index});
+      this.$emit("removeclick", list, index);
     },
-    checked(list, index){
-      console.log(list, index);
-      list.check = !list.check;
-      localStorage.removeItem(list.item);
-      localStorage.setItem(list.item, JSON.stringify(list));
+    checked(list){
+      this.$emit("checkclick", list)
     }
   }
 }
