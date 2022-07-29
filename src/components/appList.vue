@@ -23,6 +23,7 @@ export default {
     },
     checked(list){
       this.$emit("checkclick", list)
+      list.check = !list.check;
     }
   }
 }

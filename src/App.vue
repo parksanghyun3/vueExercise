@@ -36,7 +36,7 @@ export default {
       this.todoExercise.splice(index, 1)
     },
     checkItems(todoCheck){
-      todoCheck.check = !todoCheck.check;
+      // todoCheck.check = !todoCheck.check;
       localStorage.removeItem(todoCheck.item);
       localStorage.setItem(todoCheck.item, JSON.stringify(todoCheck));
     }
